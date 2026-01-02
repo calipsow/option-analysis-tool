@@ -939,7 +939,7 @@ if __name__ == "__main__":
     
     log_print(f"> Calculates & Filters best stock option contracts based on profitability chance and estimated profit on expiry. **NOTE: Assumes Shares Are Bought NOT Sold on Expiration**")
     
-    price_history = stock.get_price_history()
+    price_history = stock.get_price_history(start="2022-01-01")
     if price_history is None: raise ValueError('yfinance failed to load price history')
     print('price history loaded')
 
