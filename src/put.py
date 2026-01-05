@@ -26,8 +26,6 @@ log_print = get_log_print
 TRADING_DAYS = 252
 HORIZON_DAYS = 29
 
-stock = StockTicker("AAPL")
-
 # sigma: VOLATILITY
 # mu: expected price drift
 
@@ -287,6 +285,49 @@ def expected_call_payoff_gbm(
     # Enforce payoff non-negativity to guard against floating-point artifacts
     return max(float(expected_payoff), 0.0)
 
+def expected_put_payoff_gbm(
+    S0: float,
+    K: float,
+    T: float,
+    mu: float,
+    sigma: float,
+    *,
+    risk_neutral: bool = False,
+    r: float = 0.0,
+    trading_days: int = TRADING_DAYS
+) -> float:
+    """
+    Expected put payoff under GBM.
+    Mathematical dual of the call payoff; same GBM assumptions.
+    """
+    validate_inputs(S0, K, T, r, sigma)
+
+    if T <= 0:
+        return max(K - S0, 0.0)
+
+    T_eff = max(T, 1.0 / trading_days)
+    mu_eff = r if risk_neutral else mu
+
+    if sigma == 0.0:
+        ST = S0 * math.exp(mu_eff * T_eff)
+        return float(max(K - ST, 0.0))
+
+    sqrt_T = math.sqrt(T_eff)
+    ln_K_S0 = math.log(K / S0)
+
+    d1_star = (
+        ln_K_S0 - (mu_eff - 0.5 * sigma * sigma) * T_eff
+    ) / (sigma * sqrt_T)
+
+    d2_star = d1_star - sigma * sqrt_T
+
+    expected_payoff = (
+        K * norm.cdf(d1_star)
+        - S0 * math.exp(mu_eff * T_eff) * norm.cdf(d2_star)
+    )
+
+    return max(float(expected_payoff), 0.0)
+
 def black_scholes_call(S0: float, K: float, T: float, r: float, sigma: float) -> float:
     """
     Enhanced Black-Scholes call price with input validation.
@@ -307,6 +348,22 @@ def black_scholes_call(S0: float, K: float, T: float, r: float, sigma: float) ->
     
     price = S0 * norm.cdf(d1) - K * math.exp(-r * T) * norm.cdf(d2)
     return max(price.item(), 0.0)
+
+def black_scholes_put(S0, K, T, r, sigma):
+    validate_inputs(S0, K, T, r, sigma)
+
+    if T <= 0:
+        return max(K - S0, 0.0)
+
+    sqrt_T = math.sqrt(T)
+    d1 = (math.log(S0 / K) + (r + 0.5 * sigma**2) * T) / (sigma * sqrt_T)
+    d2 = d1 - sigma * sqrt_T
+
+    return max(
+        K * math.exp(-r * T) * norm.cdf(-d2)
+        - S0 * norm.cdf(-d1),
+        0.0
+    )
 
 def calculate_greeks(
     S0: float,
@@ -430,6 +487,32 @@ def probability_profitable_expiry(
 
     return float(norm.cdf(d))
 
+def probability_profitable_expiry_put(
+    S0: float,
+    K: float,
+    total_cost: float,
+    T: float,
+    mu_log: float,
+    sigma: float
+) -> float:
+    threshold = K - total_cost
+
+    # --- CRITICAL GUARD -----------------------------------------
+    # Put can never be profitable if breakeven <= 0
+    if threshold <= 0:
+        return 0.0
+    # ------------------------------------------------------------
+
+    if T <= 0 or sigma <= 0:
+        return 1.0 if S0 < threshold else 0.0
+
+    d = (
+        math.log(S0 / threshold)
+        + (mu_log - 0.5 * sigma**2) * T
+    ) / (sigma * math.sqrt(T))
+
+    return float(norm.cdf(-d))
+
 def compute_expected_profits_enhanced(
     S0: float,
     strike_grid: np.ndarray,
@@ -465,7 +548,7 @@ def compute_expected_profits_enhanced(
     for K in strike_grid:
         try:
             # --- Expected payoff (physical measure, no discounting) -------------
-            E_payoff = expected_call_payoff_gbm(
+            E_payoff = expected_put_payoff_gbm(
                 S0,
                 K,
                 T,
@@ -480,7 +563,7 @@ def compute_expected_profits_enhanced(
                     math.log(S0 / K)
                     + (mu_physical - 0.5 * sigma_forecast**2) * T
                 ) / (sigma_forecast * sqrt_T)  # Correct physical-measure ITM prob
-                prob_ITM = float(norm.cdf(d_itm))
+                prob_ITM = float(norm.cdf(-d_itm))
             else:
                 prob_ITM = 1.0 if S0 > K else 0.0
 
@@ -488,7 +571,7 @@ def compute_expected_profits_enhanced(
             if market_premiums is not None and K in market_premiums:
                 market_price = float(market_premiums[K])
             else:
-                market_price = black_scholes_call(
+                market_price = black_scholes_put(
                     S0,
                     K,
                     T,
@@ -526,7 +609,7 @@ def compute_expected_profits_enhanced(
                     params.sigma,
                     params.sigma_ci_upper
                 ):
-                    payoff_scenario = expected_call_payoff_gbm(
+                    payoff_scenario = expected_put_payoff_gbm(
                         S0,
                         K,
                         T,
@@ -543,11 +626,11 @@ def compute_expected_profits_enhanced(
 
             total_cost = market_price + transaction_costs
 
-            prob_profit = probability_profitable_expiry(
+            prob_profit = probability_profitable_expiry_put(
                 K=K, mu_log=params.mu_log, S0=S0, total_cost=total_cost, T=T, sigma=sigma_forecast
             )
 
-            expected_payoff = expected_call_payoff_gbm(
+            expected_payoff = expected_put_payoff_gbm(
                 S0, K, T,
                 mu=params.mu_gbm,
                 sigma=sigma_forecast
@@ -626,7 +709,7 @@ def backtest_strategy(
             # Strategy prediction
             T = HORIZON_DAYS / TRADING_DAYS
             strike = current_price  # ATM for simplicity
-            expected_payoff = expected_call_payoff_gbm(
+            expected_payoff = expected_put_payoff_gbm(
                 current_price, strike, T, params.mu_gbm, params.sigma
             )
 
@@ -935,9 +1018,9 @@ if __name__ == "__main__":
     stock = StockTicker(args.ticker)
     log_print = get_log_print(args.outfile or "REPORT.md")
     
-    log_print(f'# {stock.get_ticker().ticker} Option Analysis From: {datetime.datetime.now().strftime('%d.%m.%Y %H:%m UTC')}')
+    log_print(f'# Put Option. {stock.get_ticker().ticker} Option Analysis From: {datetime.datetime.now().strftime('%d.%m.%Y %H:%m UTC')}')
     
-    log_print(f"> Calculates & Filters best stock option contracts based on profitability chance and estimated profit on expiry. **NOTE: Assumes Shares Are Bought NOT Sold on Expiration**")
+    log_print(f"> Calculates & Filters best stock option contracts based on profitability chance and estimated profit on expiry. **NOTE: Assumes Shares Are Sold NOT Bought on Expiration**")
     
     price_history = stock.get_price_history(start="2000-01-01")
     if price_history is None: raise ValueError('yfinance failed to load price history')

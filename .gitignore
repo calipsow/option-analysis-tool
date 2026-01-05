@@ -1,4 +1,4 @@
 __pycache__/
-*.csv
+src/data/*.csv
 .DS_Store
 .venv
