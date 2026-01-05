@@ -903,7 +903,7 @@ def main(price_history: pd.DataFrame, stock_option: pd.DataFrame, days_to_expira
         log_print(f"{df_results[display_columns].head(20).to_markdown(index=False, floatfmt='.6f')}")
         
         # Risk analysis
-        log_print(f"### 4. Option Call (Buy): Risk Assessment")
+        log_print(f"### 4. Option Call (Sell): Risk Assessment")
         
         best = df_results.iloc[0]
         log_print(f"Best strike price: **${best['strike']:.0f}**")
