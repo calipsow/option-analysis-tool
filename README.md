@@ -82,7 +82,7 @@ You are fully responsible for any decisions made using this tool.
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/option-analysis-tool.git
+git clone https://github.com/calipsow/option-analysis-tool.git
 cd option-analysis-tool
 ```
 
