@@ -713,7 +713,7 @@ def parse_args():
 
 # ------------------- Enhanced Example Usage -------------------
 
-def main(price_history: pd.DataFrame, stock_option: pd.DataFrame, days_to_expiration: float):
+def main(price_history: pd.DataFrame, stock_option: pd.DataFrame, days_to_expiration: float, ticker: str):
     """Main function demonstrating the enhanced functionality with real options data."""
     current_S0 = float(price_history['Close'].iloc[-1]) # stock close price is first col
     
@@ -909,20 +909,26 @@ def main(price_history: pd.DataFrame, stock_option: pd.DataFrame, days_to_expira
         
         out_dir = pathlib.Path(__file__).parent / 'data'
         if out_dir.exists() is False or out_dir.is_dir() is False: out_dir.mkdir()
+
+        out_dir_tables = out_dir / "call"
+        if out_dir_tables.exists() is False or out_dir_tables.is_dir() is False: out_dir_tables.mkdir()
+
+        out_dir_tables = out_dir_tables / ticker.upper()
+        if out_dir_tables.exists() is False or out_dir_tables.is_dir() is False: out_dir_tables.mkdir()
         
         csv_path = f"enhanced_option_analysis_{expiry_date}.csv"        
-        df_results.to_csv(out_dir / csv_path, index=False)
+        df_results.to_csv(out_dir_tables / csv_path, index=False)
         # log_print(f"\nResults saved to: {csv_path}")
         
         # Save real options data for reference
         options_path = f"real_options_data_{expiry_date}.csv"
-        valid_options.to_csv(out_dir / options_path, index=False)
+        valid_options.to_csv(out_dir_tables / options_path, index=False)
         # log_print(f"Real options data saved to: {options_path}")
         
         # Save backtest results if available
         if 'backtest_results' in locals() and len(backtest_results) > 0:
             backtest_path = f"backtest_results_{expiry_date}.csv"
-            backtest_results.to_csv(out_dir / backtest_path, index=False)
+            backtest_results.to_csv(out_dir_tables / backtest_path, index=False)
             # log_print(f"Backtest results saved to: {backtest_path}")
             
     except Exception as e: 
@@ -966,7 +972,7 @@ if __name__ == "__main__":
         try:
             
             log_print(f'### Calculate Stock Option Nr. {i + 1}')
-            main(price_history=price_history, stock_option=contract, days_to_expiration=days_to_expiration)
+            main(price_history=price_history, stock_option=contract, days_to_expiration=days_to_expiration, ticker=args.ticker)
             log_print(f"-"*50)
             # log_print(f'\nExpiration {i+1} analysis completed successfully')
         except Exception as e:

@@ -1,8 +1,8 @@
-# SIFY Option Analysis From: 04.01.2026 18:01 UTC
+# SIFY Option Analysis From: 06.01.2026 21:01 UTC
 
 > Calculates & Filters best stock option contracts based on profitability chance and estimated profit on expiry. **NOTE: Assumes Shares Are Bought NOT Sold on Expiration**
 
-## Current Stock Price: $12.289999961853027
+## Current Stock Price: $12.529999732971191
 
 ### Calculate Stock Option Nr. 1
 
@@ -10,14 +10,14 @@ Expires At: **16.01.2026**
 
 ### 1. Black-School Analysis
 
-- Stock Price Drift: **0.1398 [-0.3598, 0.2545]**
+- Stock Price Drift: **0.1405 [-0.3595, 0.2547]**
 
-- Stock Volatility: **0.7941 [0.7026, 0.8888]**
+- Stock Volatility: **0.7940 [0.7025, 0.8887]**
 
-- Based on **6469** observations
+- Based on **6470** observations
 
 
-- Garch Volatility forecast: **0.6689**
+- Garch Volatility forecast: **0.6656**
 
 ### 2. Validate Stock Option Contracts
 
@@ -31,11 +31,11 @@ Total of valuable options: 5
 
 |    strike |   market_price |   expected_profit |   profit_ci_lower |   profit_ci_upper |   prob_ITM |   prob_profit |    delta |    gamma |     theta |     vega |
 |----------:|---------------:|------------------:|------------------:|------------------:|-----------:|--------------:|---------:|---------:|----------:|---------:|
-|  2.500000 |       3.900000 |          5.465236 |          5.087834 |          5.416678 |   1.000000 |      0.999993 | 1.000000 | 0.000000 | -0.000495 | 0.000000 |
-|  5.000000 |       6.800000 |          0.065236 |         -0.387973 |         -0.059129 |   1.000000 |      0.448212 | 1.000000 | 0.000000 | -0.000990 | 0.000000 |
-|  7.500000 |       4.400000 |         -0.034748 |         -0.440362 |         -0.110731 |   0.999927 |      0.423583 | 0.999951 | 0.000126 | -0.001499 | 0.000005 |
-| 10.000000 |       2.800000 |         -0.904402 |         -1.217416 |         -0.871463 |   0.942426 |      0.231458 | 0.952995 | 0.061707 | -0.008957 | 0.002521 |
-| 12.500000 |       0.700000 |         -0.623582 |         -0.657611 |         -0.357491 |   0.440989 |      0.167779 | 0.480335 | 0.250476 | -0.029874 | 0.010231 |
+|  2.500000 |       3.900000 |          5.693032 |          5.361183 |          5.635543 |   1.000000 |      1.000000 | 1.000000 | 0.000000 | -0.000495 | 0.000000 |
+|  5.000000 |       6.800000 |          0.293032 |         -0.111456 |          0.162904 |   1.000000 |      0.519832 | 1.000000 | 0.000000 | -0.000990 | 0.000000 |
+|  7.500000 |       4.400000 |          0.193033 |         -0.171022 |          0.103548 |   0.999996 |      0.491685 | 0.999997 | 0.000009 | -0.001486 | 0.000000 |
+| 10.000000 |       2.800000 |         -0.696327 |         -0.994868 |         -0.705705 |   0.974543 |      0.263838 | 0.979263 | 0.034730 | -0.005914 | 0.001182 |
+| 12.500000 |       1.190000 |         -1.068337 |         -1.091740 |         -0.816941 |   0.502898 |      0.115823 | 0.537375 | 0.276292 | -0.032939 | 0.009405 |
 
 ### 4. Option Call (Buy): Risk Assessment
 
@@ -43,7 +43,7 @@ Best strike price: **$2**
 
 Market price: **$3.90**
 
-Expected profit (USD): **5.47** [lowest: 5.09, highest: 5.42]
+Expected profit (USD): **5.69** [lowest: 5.36, highest: 5.64]
 
 Delta: 1.0000 (price sensitivity)
 
@@ -61,15 +61,15 @@ Profit probability: **100.00%**
 
 | Strike Price | Market Price | Optimal Market Price | Implied Volatility | Model Volatility | Market Price - Optimal Market Price |
 |--------|--------|----------|----|-----------|----- |
-| $2 | $3.90 | $9.80 | 6.45 | 0.7941 | -5.90 |
-| $5 | $6.80 | $7.30 | 6.36 | 0.7941 | -0.50 |
-| $8 | $4.40 | $4.81 | 1.25 | 0.7941 | -0.41 |
-| $10 | $2.80 | $2.40 | 1.19 | 0.7941 | 0.40 |
-| $12 | $0.70 | $0.73 | 1.29 | 0.7941 | -0.03 |
+| $2 | $3.90 | $10.03 | 9.19 | 0.7940 | -6.13 |
+| $5 | $6.80 | $7.54 | 6.66 | 0.7940 | -0.74 |
+| $8 | $4.40 | $5.04 | 4.30 | 0.7940 | -0.64 |
+| $10 | $2.80 | $2.60 | 2.96 | 0.7940 | 0.20 |
+| $12 | $1.19 | $0.77 | 1.40 | 0.7940 | 0.42 |
 
 ### 6. Backtest Stock Option Strategies
 
-- Config: Look Back Interval **252 Days**. **6470** Historical Prices **Last 5 Years**
+- Config: Look Back Interval **252 Days**. **6471** Historical Prices **Last 5 Years**
 
 - Average modal profit prediction error (actual price - predicted price): **0.2683**
 
@@ -87,14 +87,14 @@ Expires At: **20.02.2026**
 
 ### 1. Black-School Analysis
 
-- Stock Price Drift: **0.1398 [-0.3598, 0.2545]**
+- Stock Price Drift: **0.1405 [-0.3595, 0.2547]**
 
-- Stock Volatility: **0.7941 [0.7026, 0.8888]**
+- Stock Volatility: **0.7940 [0.7025, 0.8887]**
 
-- Based on **6469** observations
+- Based on **6470** observations
 
 
-- Garch Volatility forecast: **0.6689**
+- Garch Volatility forecast: **0.6656**
 
 ### 2. Validate Stock Option Contracts
 
@@ -108,8 +108,8 @@ Total of valuable options: 2
 
 |    strike |   market_price |   expected_profit |   profit_ci_lower |   profit_ci_upper |   prob_ITM |   prob_profit |    delta |    gamma |     theta |     vega |
 |----------:|---------------:|------------------:|------------------:|------------------:|-----------:|--------------:|---------:|---------:|----------:|---------:|
-| 12.500000 |       1.810000 |         -0.768583 |         -1.353120 |         -0.374501 |   0.452158 |      0.188785 | 0.548856 | 0.108111 | -0.016820 | 0.020791 |
-| 15.000000 |       1.400000 |         -1.193692 |         -1.524091 |         -0.829421 |   0.232075 |      0.092524 | 0.312405 | 0.096651 | -0.014727 | 0.018587 |
+| 12.500000 |       1.810000 |         -0.676126 |         -1.266304 |         -0.280503 |   0.479454 |      0.203821 | 0.572638 | 0.108246 | -0.017283 | 0.020540 |
+| 15.000000 |       1.050000 |         -0.805177 |         -1.122478 |         -0.415354 |   0.247665 |      0.112738 | 0.327352 | 0.099599 | -0.015547 | 0.018900 |
 
 ### 4. Option Call (Buy): Risk Assessment
 
@@ -117,30 +117,30 @@ Best strike price: **$12**
 
 Market price: **$1.81**
 
-Expected profit (USD): **-0.77** [lowest: -1.35, highest: -0.37]
+Expected profit (USD): **-0.68** [lowest: -1.27, highest: -0.28]
 
-Delta: 0.5489 (price sensitivity)
+Delta: 0.5726 (price sensitivity)
 
-Gamma: 0.1081 (delta sensitivity)
+Gamma: 0.1082 (delta sensitivity)
 
-Theta: $-0.0168 (negative decay per trading-day)
+Theta: $-0.0173 (negative decay per trading-day)
 
-Vega: $0.0208 (volatility sensitivity per 1%)
+Vega: $0.0205 (volatility sensitivity per 1%)
 
-ITM (In The Money) probability: **45.22%**
+ITM (In The Money) probability: **47.95%**
 
-Profit probability: **18.88%**
+Profit probability: **20.38%**
 
 ### 5. Model VS Market Comparison
 
 | Strike Price | Market Price | Optimal Market Price | Implied Volatility | Model Volatility | Market Price - Optimal Market Price |
 |--------|--------|----------|----|-----------|----- |
-| $12 | $1.81 | $1.61 | 1.17 | 0.7941 | 0.20 |
-| $15 | $1.40 | $0.82 | 1.24 | 0.7941 | 0.58 |
+| $12 | $1.81 | $1.71 | 1.01 | 0.7940 | 0.10 |
+| $15 | $1.05 | $0.87 | 1.12 | 0.7940 | 0.18 |
 
 ### 6. Backtest Stock Option Strategies
 
-- Config: Look Back Interval **252 Days**. **6470** Historical Prices **Last 5 Years**
+- Config: Look Back Interval **252 Days**. **6471** Historical Prices **Last 5 Years**
 
 - Average modal profit prediction error (actual price - predicted price): **0.2683**
 
@@ -158,14 +158,14 @@ Expires At: **17.04.2026**
 
 ### 1. Black-School Analysis
 
-- Stock Price Drift: **0.1398 [-0.3598, 0.2545]**
+- Stock Price Drift: **0.1405 [-0.3595, 0.2547]**
 
-- Stock Volatility: **0.7941 [0.7026, 0.8888]**
+- Stock Volatility: **0.7940 [0.7025, 0.8887]**
 
-- Based on **6469** observations
+- Based on **6470** observations
 
 
-- Garch Volatility forecast: **0.6689**
+- Garch Volatility forecast: **0.6656**
 
 ### 2. Validate Stock Option Contracts
 
@@ -179,51 +179,51 @@ Total of valuable options: 8
 
 |    strike |   market_price |   expected_profit |   profit_ci_lower |   profit_ci_upper |   prob_ITM |   prob_profit |    delta |    gamma |     theta |     vega |
 |----------:|---------------:|------------------:|------------------:|------------------:|-----------:|--------------:|---------:|---------:|----------:|---------:|
-|  5.000000 |       6.510000 |          1.024803 |         -1.553645 |          1.422529 |   0.963506 |      0.367894 | 0.985629 | 0.006302 | -0.001967 | 0.002854 |
-|  7.500000 |       5.500000 |         -0.220897 |         -2.547146 |          0.267047 |   0.824461 |      0.279069 | 0.907680 | 0.028573 | -0.005870 | 0.012939 |
-| 10.000000 |       3.570000 |         -0.107980 |         -2.001097 |          0.474050 |   0.626285 |      0.250357 | 0.763046 | 0.053302 | -0.009925 | 0.024138 |
-| 12.500000 |       2.470000 |         -0.333442 |         -1.783549 |          0.263128 |   0.439796 |      0.190880 | 0.595849 | 0.066885 | -0.011993 | 0.030289 |
-| 15.000000 |       2.250000 |         -1.022634 |         -2.033884 |         -0.411799 |   0.295158 |      0.121726 | 0.442641 | 0.068169 | -0.011994 | 0.030870 |
-| 17.500000 |       2.300000 |         -1.675197 |         -2.468418 |         -1.191994 |   0.193385 |      0.073355 | 0.318682 | 0.061639 | -0.010724 | 0.027913 |
-| 20.000000 |       1.070000 |         -0.837640 |         -1.387916 |         -0.399724 |   0.125309 |      0.057051 | 0.225201 | 0.051810 | -0.008947 | 0.023462 |
-| 22.500000 |       0.050000 |         -0.071431 |         -0.447297 |          0.310974 |   0.080938 |      0.042639 | 0.157524 | 0.041584 | -0.007144 | 0.018831 |
+|  5.000000 |       7.580000 |          0.192793 |         -2.428776 |          0.550672 |   0.968677 |      0.317764 | 0.987769 | 0.005447 | -0.001862 | 0.002506 |
+|  7.500000 |       5.500000 |         -0.007846 |         -2.361557 |          0.471074 |   0.838973 |      0.293947 | 0.915950 | 0.026467 | -0.005693 | 0.012179 |
+| 10.000000 |       3.570000 |          0.062068 |         -1.859807 |          0.649898 |   0.645032 |      0.264094 | 0.776381 | 0.051264 | -0.009910 | 0.023590 |
+| 12.500000 |       3.000000 |         -0.739340 |         -2.214549 |         -0.125310 |   0.457135 |      0.182191 | 0.610428 | 0.065792 | -0.012218 | 0.030275 |
+| 15.000000 |       2.250000 |         -0.937340 |         -1.978430 |         -0.313909 |   0.308709 |      0.129209 | 0.455640 | 0.068007 | -0.012380 | 0.031294 |
+| 17.500000 |       2.300000 |         -1.618799 |         -2.432538 |         -1.118646 |   0.203037 |      0.078001 | 0.328979 | 0.062042 | -0.011163 | 0.028549 |
+| 20.000000 |       1.070000 |         -0.801261 |         -1.365951 |         -0.346125 |   0.131822 |      0.060683 | 0.232778 | 0.052435 | -0.009362 | 0.024128 |
+| 22.500000 |       0.050000 |         -0.048339 |         -0.432696 |          0.351076 |   0.085193 |      0.045352 | 0.162834 | 0.042216 | -0.007497 | 0.019426 |
 
 ### 4. Option Call (Buy): Risk Assessment
 
 Best strike price: **$5**
 
-Market price: **$6.51**
+Market price: **$7.58**
 
-Expected profit (USD): **1.02** [lowest: -1.55, highest: 1.42]
+Expected profit (USD): **0.19** [lowest: -2.43, highest: 0.55]
 
-Delta: 0.9856 (price sensitivity)
+Delta: 0.9878 (price sensitivity)
 
-Gamma: 0.0063 (delta sensitivity)
+Gamma: 0.0054 (delta sensitivity)
 
-Theta: $-0.0020 (negative decay per trading-day)
+Theta: $-0.0019 (negative decay per trading-day)
 
-Vega: $0.0029 (volatility sensitivity per 1%)
+Vega: $0.0025 (volatility sensitivity per 1%)
 
-ITM (In The Money) probability: **96.35%**
+ITM (In The Money) probability: **96.87%**
 
-Profit probability: **36.79%**
+Profit probability: **31.78%**
 
 ### 5. Model VS Market Comparison
 
 | Strike Price | Market Price | Optimal Market Price | Implied Volatility | Model Volatility | Market Price - Optimal Market Price |
 |--------|--------|----------|----|-----------|----- |
-| $5 | $6.51 | $7.44 | 1.40 | 0.7941 | -0.93 |
-| $8 | $5.50 | $5.32 | 1.17 | 0.7941 | 0.18 |
-| $10 | $3.57 | $3.66 | 1.09 | 0.7941 | -0.09 |
-| $12 | $2.47 | $2.47 | 1.10 | 0.7941 | 0.00 |
-| $15 | $2.25 | $1.65 | 1.02 | 0.7941 | 0.60 |
-| $18 | $2.30 | $1.10 | 1.26 | 0.7941 | 1.20 |
-| $20 | $1.07 | $0.74 | 1.35 | 0.7941 | 0.33 |
-| $22 | $0.05 | $0.50 | 1.43 | 0.7941 | -0.45 |
+| $5 | $7.58 | $7.67 | 3.24 | 0.7940 | -0.09 |
+| $8 | $5.50 | $5.52 | 1.05 | 0.7940 | -0.02 |
+| $10 | $3.57 | $3.82 | 0.99 | 0.7940 | -0.25 |
+| $12 | $3.00 | $2.59 | 1.29 | 0.7940 | 0.41 |
+| $15 | $2.25 | $1.73 | 0.99 | 0.7940 | 0.52 |
+| $18 | $2.30 | $1.16 | 1.21 | 0.7940 | 1.14 |
+| $20 | $1.07 | $0.78 | 1.30 | 0.7940 | 0.29 |
+| $22 | $0.05 | $0.53 | 1.37 | 0.7940 | -0.48 |
 
 ### 6. Backtest Stock Option Strategies
 
-- Config: Look Back Interval **252 Days**. **6470** Historical Prices **Last 5 Years**
+- Config: Look Back Interval **252 Days**. **6471** Historical Prices **Last 5 Years**
 
 - Average modal profit prediction error (actual price - predicted price): **0.2683**
 
@@ -241,14 +241,14 @@ Expires At: **17.07.2026**
 
 ### 1. Black-School Analysis
 
-- Stock Price Drift: **0.1398 [-0.3598, 0.2545]**
+- Stock Price Drift: **0.1405 [-0.3595, 0.2547]**
 
-- Stock Volatility: **0.7941 [0.7026, 0.8888]**
+- Stock Volatility: **0.7940 [0.7025, 0.8887]**
 
-- Based on **6469** observations
+- Based on **6470** observations
 
 
-- Garch Volatility forecast: **0.6689**
+- Garch Volatility forecast: **0.6656**
 
 ### 2. Validate Stock Option Contracts
 
@@ -262,49 +262,49 @@ Total of valuable options: 7
 
 |    strike |   market_price |   expected_profit |   profit_ci_lower |   profit_ci_upper |   prob_ITM |   prob_profit |    delta |    gamma |     theta |     vega |
 |----------:|---------------:|------------------:|------------------:|------------------:|-----------:|--------------:|---------:|---------:|----------:|---------:|
-|  5.000000 |       6.790000 |          1.540935 |         -2.837013 |          2.580707 |   0.880244 |      0.296349 | 0.959047 | 0.010720 | -0.002684 | 0.009447 |
-|  7.500000 |       5.400000 |          0.932921 |         -2.965930 |          2.030932 |   0.714997 |      0.253145 | 0.871093 | 0.025667 | -0.005437 | 0.022620 |
-| 10.000000 |       4.320000 |          0.430889 |         -2.878587 |          1.562070 |   0.554305 |      0.207336 | 0.758059 | 0.038107 | -0.007608 | 0.033583 |
-| 12.500000 |       3.560000 |         -0.022355 |         -2.792867 |          1.065119 |   0.421463 |      0.162998 | 0.642585 | 0.045545 | -0.008833 | 0.040138 |
-| 15.000000 |       2.570000 |          0.048433 |         -2.227352 |          1.082566 |   0.318599 |      0.132833 | 0.536615 | 0.048483 | -0.009243 | 0.042727 |
-| 17.500000 |       2.490000 |         -0.566488 |         -2.439623 |          0.382370 |   0.241080 |      0.096524 | 0.444605 | 0.048218 | -0.009089 | 0.042494 |
-| 20.000000 |       1.800000 |         -0.403334 |         -1.934441 |          0.465798 |   0.183231 |      0.076562 | 0.367083 | 0.045960 | -0.008594 | 0.040504 |
+|  5.000000 |       7.780000 |          0.797549 |         -3.662231 |          1.819803 |   0.888077 |      0.268006 | 0.962072 | 0.009942 | -0.002621 | 0.009002 |
+|  7.500000 |       5.400000 |          1.153753 |         -2.829008 |          2.246967 |   0.727173 |      0.263551 | 0.877621 | 0.024435 | -0.005398 | 0.022125 |
+| 10.000000 |       4.320000 |          0.619449 |         -2.795879 |          1.732782 |   0.567498 |      0.216378 | 0.766968 | 0.036851 | -0.007652 | 0.033366 |
+| 12.500000 |       3.560000 |          0.134103 |         -2.726299 |          1.221576 |   0.433746 |      0.170532 | 0.652488 | 0.044508 | -0.008967 | 0.040300 |
+| 15.000000 |       2.570000 |          0.176189 |         -2.175740 |          1.220892 |   0.329218 |      0.139228 | 0.546498 | 0.047737 | -0.009448 | 0.043223 |
+| 17.500000 |       2.490000 |         -0.463031 |         -2.413832 |          0.488787 |   0.249909 |      0.101416 | 0.453872 | 0.047742 | -0.009340 | 0.043228 |
+| 20.000000 |       1.800000 |         -0.319854 |         -1.920402 |          0.553048 |   0.190420 |      0.080561 | 0.375447 | 0.045701 | -0.008867 | 0.041380 |
 
 ### 4. Option Call (Buy): Risk Assessment
 
 Best strike price: **$5**
 
-Market price: **$6.79**
+Market price: **$7.78**
 
-Expected profit (USD): **1.54** [lowest: -2.84, highest: 2.58]
+Expected profit (USD): **0.80** [lowest: -3.66, highest: 1.82]
 
-Delta: 0.9590 (price sensitivity)
+Delta: 0.9621 (price sensitivity)
 
-Gamma: 0.0107 (delta sensitivity)
+Gamma: 0.0099 (delta sensitivity)
 
-Theta: $-0.0027 (negative decay per trading-day)
+Theta: $-0.0026 (negative decay per trading-day)
 
-Vega: $0.0094 (volatility sensitivity per 1%)
+Vega: $0.0090 (volatility sensitivity per 1%)
 
-ITM (In The Money) probability: **88.02%**
+ITM (In The Money) probability: **88.81%**
 
-Profit probability: **29.63%**
+Profit probability: **26.80%**
 
 ### 5. Model VS Market Comparison
 
 | Strike Price | Market Price | Optimal Market Price | Implied Volatility | Model Volatility | Market Price - Optimal Market Price |
 |--------|--------|----------|----|-----------|----- |
-| $5 | $6.79 | $7.69 | 1.12 | 0.7941 | -0.90 |
-| $8 | $5.40 | $5.88 | 1.05 | 0.7941 | -0.48 |
-| $10 | $4.32 | $4.48 | 1.14 | 0.7941 | -0.16 |
-| $12 | $3.56 | $3.44 | 1.01 | 0.7941 | 0.12 |
-| $15 | $2.57 | $2.65 | 0.97 | 0.7941 | -0.08 |
-| $18 | $2.49 | $2.06 | 1.03 | 0.7941 | 0.43 |
-| $20 | $1.80 | $1.62 | 1.10 | 0.7941 | 0.18 |
+| $5 | $7.78 | $7.91 | 0.98 | 0.7940 | -0.13 |
+| $8 | $5.40 | $6.08 | 0.95 | 0.7940 | -0.68 |
+| $10 | $4.32 | $4.65 | 0.99 | 0.7940 | -0.33 |
+| $12 | $3.56 | $3.57 | 0.98 | 0.7940 | -0.01 |
+| $15 | $2.57 | $2.76 | 0.96 | 0.7940 | -0.19 |
+| $18 | $2.49 | $2.15 | 1.04 | 0.7940 | 0.34 |
+| $20 | $1.80 | $1.69 | 1.17 | 0.7940 | 0.11 |
 
 ### 6. Backtest Stock Option Strategies
 
-- Config: Look Back Interval **252 Days**. **6470** Historical Prices **Last 5 Years**
+- Config: Look Back Interval **252 Days**. **6471** Historical Prices **Last 5 Years**
 
 - Average modal profit prediction error (actual price - predicted price): **0.2683**
 
