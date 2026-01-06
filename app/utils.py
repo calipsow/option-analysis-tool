@@ -10,8 +10,8 @@ import numpy as np
 from typing import Optional, List, Any
 
 # setup local cache.
-cache_path = pathlib.Path(__file__).parent / 'cache/yfinance'
-if os.path.exists(cache_path) is False: raise FileNotFoundError(f'cache path {str(cache_path)} dont exists')
+cache_path = pathlib.Path(__file__).parent / 'cache'
+if os.path.exists(cache_path) is False: cache_path.mkdir()
 yf.set_tz_cache_location(str(cache_path))
 
 outfile = "REPORT.md"

@@ -3,3 +3,6 @@ src/data/**/*.csv
 src/data/*.csv
 .DS_Store
 .venv
+cache/
+.vscode/
+env/
