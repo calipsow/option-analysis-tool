@@ -160,7 +160,7 @@ python put.py --ticker AAPL --outfile PUT_OPTION_REPORT.md
 
 ---
 
-## Output
+## Example Output Report
 
 ![report_1](./media/report_1.png)
 
