@@ -162,6 +162,12 @@ python put.py --ticker AAPL --outfile PUT_OPTION_REPORT.md
 
 ## Output
 
+![report_1](./media/report_1.png)
+
+![report_2](./media/report_2.png)
+
+![report_3](./media/report_3.png)
+
 ### 1. Markdown Report
 
 - Saved as markdown
